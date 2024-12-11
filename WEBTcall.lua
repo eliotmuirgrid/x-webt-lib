@@ -1,11 +1,10 @@
-function WEBTcallWorker(Data)
-   local ThreadComponent = component.fields().ThreadComponent
+function WEBTcallWorker(Data, WorkerComponent)
    local CallData      = {}
    CallData.func       = "WEBrespond"
    CallData.payload    = Data
    -- component.call requires string data so serialize the table to json
    CallData = json.serialize{data=CallData}
-   component.call{name=ThreadComponent, data=CallData, func="main", async=true}
+   component.call{name=WorkerComponent, data=CallData, func="main", async=true}
 end
 
 function WEBTcallServer(Response, ServerComponent, CallbackFunction)
